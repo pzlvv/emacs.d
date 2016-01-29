@@ -10,18 +10,22 @@
       package-archives)
 (package-initialize)
 
-(setq evil-want-C-u-scroll t)
+
 (require 'evil)
 (evil-mode 1)
 
 (evil-set-initial-state 'calendar-mode 'emacs)
 
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 (setq key-chord-two-keys-delay 0.4)
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 (key-chord-mode 1)
 
 (set-frame-parameter nil 'background-mode 'dark)
 (load-theme 'solarized t)
+
+(prefer-coding-system 'utf-8)
+(setenv "LANG" "en_US.UTF8")
 
 (global-linum-mode t)
 (setq column-number-mode t)
@@ -56,7 +60,6 @@
             (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
             (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
             (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-            (define-key evil-normal-state-local-map (kbd "r") 'neotree-refresh)
             (define-key evil-insert-state-local-map (kbd "r") 'neotree-refresh)
             (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 
@@ -69,7 +72,11 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20151211.227/dict")
 (ac-config-default)
 
+(require 'ox-md nil t)
+(setq org-src-fontify-natively t)
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((python . t)))
 
+;(setq inferior-lisp-program "D:/Program Files/ccl/wx86cl64.exe")
+(setq inferior-lisp-program "wx86cl64")
