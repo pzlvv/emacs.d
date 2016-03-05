@@ -1,14 +1,40 @@
-(setq url-proxy-services
-      '(("no_proxy" . "^\\(localhost\\|10.*\\)")
-        ("http" . "127.0.0.1:3128")
-        ("https" . "127.0.0.1:3128")))
+;(setq url-proxy-services
+;      '(("no_proxy" . "^\\(localhost\\|10.*\\)")
+;        ("http" . "127.0.0.1:3128")
+;        ("https" . "127.0.0.1:3128")))
 
 (require 'package)
-(push '("marmalade" . "http://marmalade-repo.org/packages/")
-      package-archives )
 (push '("melpa" . "http://melpa.milkbox.net/packages/")
       package-archives)
+(push '("marmalade" . "http://marmalade-repo.org/packages/")
+      package-archives )
 (package-initialize)
+
+(defvar required-packages
+  '(auto-complete evil neotree window-numbering key-chord color-theme-solarized
+  ) "a list of packages to ensure are installed at launch.")
+
+(require 'cl)
+; method to check if all packages are installed
+(defun packages-installed-p()
+  (loop for p in required-packages
+        when (not (package-installed-p p)) do (return nil)
+        finally (return t)))
+
+; if not all packages are installed, check one by one and install the missing ones.
+(unless (packages-installed-p)
+  ; check for new packages (package versions)
+  (message "%s" "Emacs is now refreshing its package database...")
+  (package-refresh-contents)
+  (message "%s" " done.")
+  ; install the missing packages
+  (dolist (p required-packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
+
+
+
+
 
 
 (require 'evil)
@@ -37,10 +63,12 @@
 (global-font-lock-mode t)
 (set-frame-font "consolas 10")
 
-(dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-                      charset
-                      (font-spec :family "Microsoft Yahei" :size 12)))
+(if (eq system-type 'windows-nt)
+    (dolist (charset '(kana han symbol cjk-misc bopomofo))
+      (set-fontset-font (frame-parameter nil 'font)
+			charset
+			(font-spec :family "Microsoft Yahei" :size 12)))
+  )
 
 
 (require 'paren)
@@ -56,12 +84,12 @@
 (define-key neotree-mode-map (kbd "C-l") #'neotree-enter-vertical-split)
 (global-set-key [f3] 'neotree-toggle)
 (add-hook 'neotree-mode-hook
-          (lambda ()
-            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-            (define-key evil-insert-state-local-map (kbd "r") 'neotree-refresh)
-            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
+	  (lambda ()
+	    (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+	    (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+	    (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+	    (define-key evil-insert-state-local-map (kbd "r") 'neotree-refresh)
+	    (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 
 
 (require 'window-numbering)
@@ -69,7 +97,7 @@
 
 
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20151211.227/dict")
+(setq ac-ignore-case nil)
 (ac-config-default)
 
 (require 'ox-md nil t)
@@ -78,5 +106,4 @@
  'org-babel-load-languages
  '((python . t)))
 
-;(setq inferior-lisp-program "D:/Program Files/ccl/wx86cl64.exe")
 (setq inferior-lisp-program "wx86cl64")
