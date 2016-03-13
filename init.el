@@ -43,7 +43,7 @@
 (evil-set-initial-state 'calendar-mode 'emacs)
 
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
-(setq key-chord-two-keys-delay 0.4)
+(setq key-chord-two-keys-delay 0.2)
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 (key-chord-mode 1)
 
@@ -61,13 +61,14 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (global-font-lock-mode t)
-(set-frame-font "consolas 10")
 
 (if (eq system-type 'windows-nt)
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset
-			(font-spec :family "Microsoft Yahei" :size 12)))
+			(font-spec :family "Microsoft Yahei" :size 12))
+	(set-frame-font "consolas 10")
+)
   )
 
 
@@ -99,6 +100,7 @@
 (require 'auto-complete-config)
 (setq ac-ignore-case nil)
 (ac-config-default)
+(ac-linum-workaround)
 
 (require 'ox-md nil t)
 (setq org-src-fontify-natively t)
@@ -107,3 +109,6 @@
  '((python . t)))
 
 (setq inferior-lisp-program "wx86cl64")
+
+
+(global-set-key (kbd "C-x C-b") 'buffer-menu)
