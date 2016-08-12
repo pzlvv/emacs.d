@@ -9,7 +9,6 @@
 (push '("marmalade" . "http://marmalade-repo.org/packages/")
       package-archives )
 (package-initialize)
-
 (defvar required-packages
   '(auto-complete evil neotree window-numbering key-chord color-theme-solarized yasnippet
   ) "a list of packages to ensure are installed at launch.")
@@ -52,22 +51,19 @@
 
 (global-set-key (kbd "C-x m") 'buffer-menu)
 
-;(add-to-list 'load-path "~/.emacs.d/jdee-2.4.1/lisp")
-;(load "jde")
-;(defun reload-prj()
-;  "Reload the project file"
-;  (interactive)
-;  (load-file (jde-find-project-file (file-name-directory buffer-file-name)))
-;  )
-;(provide 'reload-prj)
-
 (setq preview-image-type 'pnm)
-
 
 (setq tags-file-name "~/ctags/TAGS")
 
 (custom-set-variables
-  '(ac-etags-requires 1))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ac-etags-requires 1)
+ '(package-selected-packages
+   (quote
+    (## magit feature-mode go-autocomplete go-impl yasnippet yaml-mode window-numbering window-number python-mode popup-complete neotree markdown-mode lua-mode key-chord json-mode color-theme-solarized color-theme-sanityinc-solarized colemak-evil auto-auto-indent auctex ac-etags))))
 
 (eval-after-load "etags"
   '(progn
@@ -75,3 +71,9 @@
 
 (add-hook 'c-mode-common-hook 'ac-etags-ac-setup)
 (add-hook 'ruby-mode-common-hook 'ac-etags-ac-setup)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

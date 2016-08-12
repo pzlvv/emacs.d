@@ -47,11 +47,12 @@
 (require 'window-numbering)
 (window-numbering-mode 1)
 
-
+(require 'go-autocomplete)
 (require 'auto-complete-config)
 (setq ac-ignore-case nil)
-(ac-config-default)
 (ac-linum-workaround)
+(setq ac-auto-start 4)
+(ac-config-default)
 
 (setq c-default-style
       '((java-mode . "java")
@@ -60,3 +61,4 @@
 
 (require 'yasnippet)
 (yas-global-mode 1)
+
