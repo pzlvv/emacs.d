@@ -2,12 +2,9 @@
       '(("no_proxy" . "^\\(localhost\\|10.*\\)")
         ("http" . "127.0.0.1:3128")
         ("https" . "127.0.0.1:3128")))
-
 (require 'package)
-(push '("melpa" . "http://melpa.milkbox.net/packages/")
-      package-archives)
-(push '("marmalade" . "http://marmalade-repo.org/packages/")
-      package-archives )
+(add-to-list 'package-archives
+             '("melpa" . "http://stable.melpa.org/packages/"))
 (package-initialize)
 (defvar required-packages
   '(auto-complete evil neotree window-numbering key-chord color-theme-solarized yasnippet
@@ -63,7 +60,7 @@
  '(ac-etags-requires 1)
  '(package-selected-packages
    (quote
-    (## magit feature-mode go-autocomplete go-impl yasnippet yaml-mode window-numbering window-number python-mode popup-complete neotree markdown-mode lua-mode key-chord json-mode color-theme-solarized color-theme-sanityinc-solarized colemak-evil auto-auto-indent auctex ac-etags))))
+    (## magit feature-mode go-autocomplete go-impl window-numbering window-number python-mode popup-complete neotree markdown-mode lua-mode key-chord json-mode color-theme-solarized color-theme-sanityinc-solarized colemak-evil auto-auto-indent auctex ac-etags))))
 
 (eval-after-load "etags"
   '(progn

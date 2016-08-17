@@ -51,7 +51,9 @@
 (require 'auto-complete-config)
 (setq ac-ignore-case nil)
 (ac-linum-workaround)
-(setq ac-auto-start 4)
+(setq ac-auto-start nil)
+(setq ac-use-menu-map t)
+(define-key evil-insert-state-map "\C-n" 'auto-complete)
 (ac-config-default)
 
 (setq c-default-style
