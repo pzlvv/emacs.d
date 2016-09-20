@@ -1,4 +1,5 @@
-(global-set-key  [f8] (lambda () (interactive) (find-file "E:/notes/Todo.org")))
+(global-set-key  [f8] (lambda () (interactive) (find-file "E:/notes/note.org")))
+(global-set-key  [f7] (lambda () (interactive) (find-file "E:/tmp/draft.txt")))
 
 
 (global-set-key (kbd "C-x g") 'magit-status)

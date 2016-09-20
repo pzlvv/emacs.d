@@ -38,6 +38,7 @@
 (load-user-file "evil.el")
 (load-user-file "custom.el")
 (load-user-file "basic.el")
+(load-user-file "latex.el")
 
 (require 'ox-md nil t)
 (setq org-src-fontify-natively t)
