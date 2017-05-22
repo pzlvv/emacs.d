@@ -1,10 +1,13 @@
 (set-frame-parameter nil 'background-mode 'dark)
-(load-theme 'solarized t)
+(load-theme 'zenburn  t)
 
 (prefer-coding-system 'utf-8)
 (setenv "LANG" "en_US.UTF8")
 
-(global-linum-mode t)
+(global-nlinum-mode t)
+(if (not (display-graphic-p)) (setq nlinum-format "%d "))
+
+
 (setq column-number-mode t)
 (setq auto-save-default nil)
 (setq make-backup-files nil)
@@ -18,10 +21,9 @@
       (set-fontset-font (frame-parameter nil 'font)
 			charset
 			(font-spec :family "Microsoft Yahei" :size 12))
-	(set-frame-font "consolas 10")
-)
+      (set-frame-font "Source Code Pro 10")
+      )
   )
-
 
 (require 'paren)
 (setq show-paren-delay 0)
@@ -31,34 +33,28 @@
 
 (setq inhibit-startup-message t)
 
-(require 'neotree)
-(define-key neotree-mode-map (kbd "M-l") #'neotree-enter-horizontal-split)
-(define-key neotree-mode-map (kbd "C-l") #'neotree-enter-vertical-split)
-(global-set-key [f3] 'neotree-toggle)
-(add-hook 'neotree-mode-hook
-	  (lambda ()
-	    (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-	    (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-	    (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-	    (define-key evil-insert-state-local-map (kbd "r") 'neotree-refresh)
-	    (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
-
-
 (require 'window-numbering)
 (window-numbering-mode 1)
 
-(require 'go-autocomplete)
-(require 'auto-complete-config)
-(setq ac-ignore-case nil)
-(ac-linum-workaround)
-(setq ac-auto-start nil)
-(setq ac-use-menu-map t)
-(define-key evil-insert-state-map "\C-n" 'auto-complete)
-(ac-config-default)
+					;(require 'go-autocomplete)
+;(require 'auto-complete-config)
+;(setq ac-ignore-case nil)
+;(ac-linum-workaround)
+					;(setq ac-auto-start nil)
+;(setq ac-use-menu-map t)
+;(ac-config-default)
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-dabbrev-downcase nil)
+
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "C-n") 'company-select-next-or-abort)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous-or-abort)
+  )
+
 
 (setq c-default-style
       '((java-mode . "java")
-        (other . "linux")))
+	(other . "linux")))
 (setq c-basic-offset 4)
 
 (require 'yasnippet)
