@@ -1,10 +1,11 @@
-(setq url-proxy-services
-      '(("no_proxy" . "^\\(localhost\\|10.*\\)")
-        ("http" . "10.135.193.246:3128")
-        ("https" . "10.135.193.246:3128")))
+;Uncomment the following lines if you are behind a proxy
+;(setq url-proxy-services
+;      '(("no_proxy" . "^\\(localhost\\|10.*\\)")
+;        ("http" . "127.0.0.1:3128")
+;        ("https" . "127.0.0.1:3128")))
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://stable.melpa.org/packages/"))
+(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 (package-initialize)
 
 (custom-set-variables
@@ -15,7 +16,7 @@
  '(ac-etags-requires 1)
  '(package-selected-packages
    (quote
-    (company-anaconda nlinum web-mode goto-chg js2-mode company tide zenburn-theme evil-escape helm yaml-mode magit feature-mode go-impl window-numbering window-number python-mode popup-complete neotree markdown-mode lua-mode key-chord json-mode colemak-evil auto-auto-indent auctex)))
+    (company-anaconda nlinum web-mode yasnippet js2-mode company tide zenburn-theme evil-escape helm yaml-mode magit feature-mode go-impl window-numbering window-number python-mode popup-complete neotree markdown-mode lua-mode key-chord json-mode colemak-evil auto-auto-indent auctex)))
  '(send-mail-function (quote mailclient-send-it)))
 
 ; if not all packages are installed, check one by one and install the missing ones.

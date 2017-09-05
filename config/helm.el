@@ -5,4 +5,4 @@
 (helm-mode 1)
 
 
-(set-face-attribute 'helm-selection nil :background "purple" :foreground "black")
+;(set-face-attribute 'helm-selection nil :background "purple" :foreground "black")

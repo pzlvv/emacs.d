@@ -54,7 +54,7 @@
 
 (setq c-default-style
       '((java-mode . "java")
-	(other . "linux")))
+	(other . "ellemtel")))
 (setq c-basic-offset 4)
 
 (require 'yasnippet)
