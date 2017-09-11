@@ -5,7 +5,7 @@
 (setenv "LANG" "en_US.UTF8")
 
 (global-nlinum-mode t)
-;(if (not (display-graphic-p)) (setq nlinum-format "%d "))
+(if (not (display-graphic-p)) (setq nlinum-format "%d "))
 
 
 (setq column-number-mode t)
@@ -36,13 +36,6 @@
 (require 'window-numbering)
 (window-numbering-mode 1)
 
-					;(require 'go-autocomplete)
-;(require 'auto-complete-config)
-;(setq ac-ignore-case nil)
-;(ac-linum-workaround)
-					;(setq ac-auto-start nil)
-;(setq ac-use-menu-map t)
-;(ac-config-default)
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-dabbrev-downcase nil)
 
@@ -59,5 +52,3 @@
 
 (require 'yasnippet)
 (yas-global-mode 1)
-
-
