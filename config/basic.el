@@ -5,7 +5,7 @@
 (setenv "LANG" "en_US.UTF8")
 
 (global-nlinum-mode t)
-(if (not (display-graphic-p)) (setq nlinum-format "%d "))
+;(if (not (display-graphic-p)) (setq nlinum-format "%d "))
 
 
 (setq column-number-mode t)
@@ -13,15 +13,15 @@
 (setq make-backup-files nil)
 (tool-bar-mode 0)
 (menu-bar-mode 0)
-(scroll-bar-mode 0)
+(when (display-graphic-p) (scroll-bar-mode 0))
 (global-font-lock-mode t)
 
-(if (eq system-type 'windows-nt)
+(if (display-graphic-p)
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset
 			(font-spec :family "Microsoft Yahei" :size 12))
-      (set-frame-font "Source Code Pro 10")
+      (set-frame-font "Source Code Pro Bold 10")
       )
   )
 
@@ -59,4 +59,5 @@
 
 (require 'yasnippet)
 (yas-global-mode 1)
+
 

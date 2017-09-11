@@ -1,8 +1,8 @@
 ;Uncomment the following lines if you are behind a proxy
-;(setq url-proxy-services
-;      '(("no_proxy" . "^\\(localhost\\|10.*\\)")
-;        ("http" . "127.0.0.1:3128")
-;        ("https" . "127.0.0.1:3128")))
+(setq url-proxy-services
+      '(("no_proxy" . "^\\(localhost\\|10.*\\)")
+        ("http" . "10.135.193.246:3128")
+        ("https" . "10.135.193.246:3128")))
 (require 'package)
 (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
                          ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
