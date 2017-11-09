@@ -3,7 +3,7 @@
 (evil-escape-mode 1)
 
 (require 'cl)
-(loop for mode in '(calendar-mode eshell-mode gud-mode) do (evil-set-initial-state mode 'emacs))
+(loop for mode in '(calendar-mode eshell-mode gud-mode inferior-python-mode) do (evil-set-initial-state mode 'emacs))
 
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 
@@ -11,5 +11,6 @@
 (setq-default evil-escape-delay 0.4)
 (define-key evil-insert-state-map "\C-n" 'company-complete)
 (define-key evil-insert-state-map "\C-p" 'company-complete)
+(define-key evil-normal-state-map "\M-." nil)
 
 (evil-declare-change-repeat 'company-complete)
