@@ -22,3 +22,8 @@ If other-window-p is non-nil, show the same in other window."
   (interactive
    (list (gud-query-cmdline pdb-path
 			    (file-name-nondirectory buffer-file-name)))))
+
+(add-hook 'python-mode-hook 'guess-style-guess-tabs-mode)
+(add-hook 'python-mode-hook (lambda ()
+                              (guess-style-guess-tab-width)))
+(setq python-indent-offset 4)

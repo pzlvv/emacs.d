@@ -7,6 +7,19 @@
 (global-nlinum-mode t)
 (if (not (display-graphic-p)) (setq nlinum-format "%d "))
 
+(defun infer-indentation-style ()
+  ;; if our source file uses tabs, we use tabs, if spaces spaces, and if        
+  ;; neither, we use the current indent-tabs-mode                               
+  (let ((space-count (how-many "^  " (point-min) (point-max)))
+        (tab-count (how-many "^\t" (point-min) (point-max))))
+    (if (> space-count tab-count) (setq indent-tabs-mode nil))
+    (if (> tab-count space-count) (setq indent-tabs-mode t))))
+
+(setq-default indent-tabs-mode nil)
+(infer-indentation-style)
+(setq-default tab-width 4)
+(defvaralias 'c-basic-offset 'tab-width)
+(defvaralias 'python-indent 'tab-width)
 
 (setq column-number-mode t)
 (setq auto-save-default nil)
@@ -45,10 +58,6 @@
   )
 
 
-(setq c-default-style
-      '((java-mode . "java")
-	(other . "ellemtel")))
-(setq c-basic-offset 4)
-
 (require 'yasnippet)
 (yas-global-mode 1)
+

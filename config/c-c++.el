@@ -1,5 +1,9 @@
 (require 'ansi-color)
 
+(setq c-default-style
+      '((java-mode . "java")
+	(other . "ellemtel")))
+
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 (defun colorize-compilation-buffer ()
