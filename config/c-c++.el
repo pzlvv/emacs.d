@@ -1,4 +1,5 @@
 (require 'ansi-color)
+(require 'rtags)
 
 (setq c-default-style
       '((java-mode . "java")
@@ -25,8 +26,16 @@
 (add-hook 'c++-mode-hook 'my/c++-mode-hook)
 (add-hook 'c-mode-hook 'my/c-mode-hook)
 
+(add-hook 'c-mode-hook 'rtags-start-process-unless-running)
+(add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
+
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-irony))
 
 (require 'xcscope)
 (cscope-setup)
+
+(setq rtags-autostart-diagnostics t)
+(setq rtags-display-result-backend 'helm)
+(rtags-enable-standard-keybindings)
+(rtags-diagnostics)

@@ -3,7 +3,7 @@
 (evil-escape-mode 1)
 
 (require 'cl)
-(loop for mode in '(calendar-mode eshell-mode gud-mode inferior-python-mode) do (evil-set-initial-state mode 'emacs))
+(loop for mode in '(rtags-mode calendar-mode eshell-mode gud-mode inferior-python-mode py-python-shell-mode) do (evil-set-initial-state mode 'emacs))
 
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 

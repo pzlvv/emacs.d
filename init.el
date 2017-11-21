@@ -18,7 +18,7 @@
  '(company-clang-arguments (quote ("-std=c11")))
  '(package-selected-packages
    (quote
-    (elpy dockerfile-mode xcscope company-go nlinum web-mode yasnippet js2-mode company tide zenburn-theme evil-escape helm yaml-mode magit feature-mode go-mode go-impl window-numbering window-number python-mode popup-complete neotree markdown-mode lua-mode key-chord json-mode colemak-evil auto-auto-indent auctex)))
+    (helm-rtags company-rtags rtags protobuf-mode sproto-mode realgud elpy dockerfile-mode xcscope company-go nlinum web-mode yasnippet js2-mode company tide zenburn-theme evil-escape helm yaml-mode magit feature-mode go-mode go-impl window-numbering window-number python-mode popup-complete neotree markdown-mode lua-mode key-chord json-mode colemak-evil auto-auto-indent auctex)))
  '(send-mail-function (quote mailclient-send-it)))
 
 ; if not all packages are installed, check one by one and install the missing ones.
