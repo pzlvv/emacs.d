@@ -1,5 +1,9 @@
 (elpy-enable)
 
+(setq elpy-rpc-python-command "python3")
+(setq python-shell-interpreter "python3"
+      python-shell-interpreter-args "-i")
+
 ;Rewrite elpy-goto-location without recenter
 (defun elpy-goto-location (filename offset &optional other-window-p)
   "Show FILENAME at OFFSET to the user.
