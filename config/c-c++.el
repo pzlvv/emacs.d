@@ -1,5 +1,4 @@
 (require 'ansi-color)
-(require 'rtags)
 
 (setq c-default-style
       '((java-mode . "java")
@@ -12,30 +11,16 @@
   (ansi-color-apply-on-region compilation-filter-start (point))
   (toggle-read-only))
 
-(defun my/c++-mode-hook ()
-  (setq-local
-   company-clang-arguments '("-std=c++14"))
-  )
-
-(defun my/c-mode-hook ()
-  (setq-local
-   company-clang-arguments '("-std=c11"))
-  )
-
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
-(add-hook 'c++-mode-hook 'my/c++-mode-hook)
-(add-hook 'c-mode-hook 'my/c-mode-hook)
-
-(add-hook 'c-mode-hook 'rtags-start-process-unless-running)
-(add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-irony))
 
+;(setq irony-additional-clang-options
+;      (append '("-I" "inc") irony-additional-clang-options))
+
 (require 'xcscope)
 (cscope-setup)
-
-(setq rtags-autostart-diagnostics t)
-(setq rtags-display-result-backend 'helm)
-(rtags-enable-standard-keybindings)
-(rtags-diagnostics)

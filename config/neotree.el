@@ -5,6 +5,7 @@
 	    (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-stretch-toggle)
 	    (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
 	    (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+	    (define-key evil-normal-state-local-map (kbd "A") 'neotree-hidden-file-toggle)
 	    (define-key evil-insert-state-local-map (kbd "r") 'neotree-refresh)
 	    (define-key evil-normal-state-local-map (kbd "-") 'neotree-enter-horizontal-split)
 	    (define-key evil-normal-state-local-map (kbd "|") 'neotree-enter-vertical-split)
@@ -25,3 +26,13 @@
 (setq window-numbering-auto-assign-0-to-minibuffer nil)
 
 (set-window-number-0)
+
+(defun neotree-set-current-as-root ()
+  (interactive)
+  (let ((window (selected-window)))
+    (progn (neotree-dir default-directory)
+           (select-window window)
+           )
+    ))
+
+(global-set-key (kbd "C-x a") 'neotree-set-current-as-root)
